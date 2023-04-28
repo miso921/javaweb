@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>test2.jsp(jsp로 값가져오기 => 가능하지만 실제로는 사용하지 않음)</title>
+	<jsp:include page="/include/bs4.jsp" />
+</head>
+<body>
+<p><br /></p>
+<div class='container'>
+	<h2>회원정보</h2>
+	<form name="myform" method="post" action="test2Ok.jsp">
+		<p>
+			성명 : <input type="text" name="name" id="name" value="홍길동" autofocus class="form-control" /> 
+		</p>
+		<p>
+			나이 : <input type="number" name="age" id="age" value="20" class="form-control" /> 
+		</p>
+		<p>
+			성별 : <input type="radio" name="gender" id="gender" value="여자" checked />여자 &nbsp;&nbsp;
+						<input type="radio" name="gender" id="gender" value="남자" />남자
+		</p>
+		<p>
+			직업 : <select name="job" id="job" class="form-control"> 
+							<option value="">선택하세요.</option> 
+							<option>학생</option> 
+							<option>회사원</option> 
+							<option>공무원</option> 
+							<option>군인</option> 
+							<option>프리랜서</option> 
+							<option>기타</option>
+						</select>	 
+		</p>
+		<p>
+			주소 : <input type="text" name="address" id="address" value="청주" class="form-control" /> 
+		</p>
+			<input type="submit" value="전송" class="btn btn-success" /> 
+	</form>
+</div>
+<p><br /></p>
+</body>
+</html>

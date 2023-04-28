@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="https://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://xmlns.jcp.org/xml/ns/javaee https://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>javaweb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Controller 역할을 하는 @webServlet을 대신한다.  -->
+  <servlet>
+   	<servlet-name>test2</servlet-name>  <!-- 2. 서블릿 안에서 부르는 이름 -->
+  	<servlet-class>study.t0419.Test2</servlet-class> <!-- 1. Test2(.class)가 생략된 상태 --> 
+  </servlet>
+  <servlet-mapping>  <!-- 3. -->
+  	<servlet-name>test2</servlet-name>
+  	<url-pattern>/t2</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+   	<servlet-name>T_init</servlet-name>  <!-- 2. 서블릿 안에서 부르는 이름 -->
+  	<servlet-class>study.t0426.T_init</servlet-class> <!-- 1. Test2(.class)가 생략된 상태 --> 
+  </servlet>
+  <servlet-mapping>  <!-- 3. -->
+  	<servlet-name>T_init</servlet-name>
+  	<url-pattern>/t0426/T_init</url-pattern>
+  </servlet-mapping>
+  
+ 
+  <!-- Filter 처리를 위한 설정  -->
+  <!--
+  <filter>
+  	<filter-name>encodiongFilter</filter-name>  클래스명 맨 앞자리를 소문자로 바꾸는게 일반적임
+  	<filter-class>filter.EncodiongFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>encodiongFilter</filter-name>
+  	<url-pattern>/*</url-pattern>  한글을 사용하는 모든 파일에 적용해야하기 때문에 전체를 뜻하는 * 사용 
+  </filter-mapping>
+  
+  초기값 설정하기 (맨 처음 들어가는 곳이 web.xml) -->
+  <context-param>
+  	<param-name>logoName</param-name>
+  	<param-value>Java Green Company</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>homeAddress</param-name>
+  	<param-value>http://192.168.50.90:9090/javaweb/</param-value>
+  </context-param>
+  
+</web-app>
