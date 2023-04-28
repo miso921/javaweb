@@ -34,7 +34,7 @@
     <textarea name="content" rows="3" class="form-control">Welcome to My Homepage!</textarea>
     <div>
 	    <input type="text" name="searchString" value="o" />
-	    <input type="submit" value="3번째문자 검색" class="btn-btn-success"/>
+	    <input type="submit" value="3번째 문자 검색" class="btn-btn-success"/>
     </div>
     <hr/>
     <!-- el에서의 empty연산자는 null과 공백을 같은것으로본다. 즉 null이나 공백이면 true으로 처리됨. null이나 공백이 아닌것을 참으로 처리하려면 !empty 를 이용한다. -->
