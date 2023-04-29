@@ -24,8 +24,8 @@ public class LoginVO {
 	public String getPwd() {
 		return pwd;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPwd(String string) {
+		this.pwd = string;
 	}
 	public String getName() {
 		return name;

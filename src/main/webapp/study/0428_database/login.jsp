@@ -44,7 +44,7 @@
           <input type="submit" value="로그인" class="btn btn-success mr-2"/>
           <input type="reset" value="다시입력" class="btn btn-warning mr-2"/>
           <input type="button" value="회원가입" onclick="location.href='join.jsp';" class="btn btn-primary mr-2"/>
-          <input type="button" value="비밀번호찾기" onclick="location.href='${ctp}/database/Pwdfind';" class="btn btn-secondery mr-3"/>
+          <input type="button" value="비밀번호찾기" onclick="location.href='pwdFind.jsp';" class="btn btn-info mr-3"/>
 	    		<input type="checkbox" name="idSave" checked /> 아이디 저장
         </td>
       </tr>

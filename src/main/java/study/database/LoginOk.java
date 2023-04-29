@@ -45,7 +45,7 @@ public class LoginOk extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String strToday = sdf.format(today);
 			
-			int todayCount = vo.getTodayCount();
+			int todayCount = vo.getTodayCount();  
 			int point = 0;
 			String lastDate = vo.getLastDate();
 			if(strToday.equals(lastDate.substring(0,10))) {

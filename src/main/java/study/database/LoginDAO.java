@@ -18,7 +18,7 @@ public class LoginDAO {
 	private PreparedStatement pstmt = null; // DB에서 select 명령 외 사용할 때 사용
 	private ResultSet rs = null; // DB에서 select 명령할 때만 사용
 	
-	LoginVO vo = null; // 많은 메소드에서 공통적으로 사용하기 때문에 전역변수로 사용 
+	private LoginVO vo = null; // 많은 메소드에서 공통적으로 사용하기 때문에 전역변수로 사용 
 	String sql = "";
 	
 	public LoginDAO() {
@@ -31,14 +31,14 @@ public class LoginDAO {
 			
 			conn = DriverManager.getConnection(url, user, password); 
 		} catch (ClassNotFoundException e) {
-				System.out.println("드라이버 검색 실패~!"); // jdbc 있는지 확인하기
+				System.out.println("Driver 검색 실패~!"); // jdbc 있는지 확인하기
 		} catch (SQLException e) {
-				System.out.println("데이터베이스 연동 실패~!"); // url, user, password 맞는지 확인하기
+				System.out.println("Database 연동 실패~!"); // url, user, password 맞는지 확인하기
 		}
 	}
 	
-	// 사용한 객체의 반납(해제)
-	public void pstmtClose() {
+	// 사용한 객체의 반납(해제) // sql에서 select 이외의 명령문 사용했을 때 닫기
+	public void pstmtClose() { 
 		if(pstmt != null) { // pstmt가 null이 아닐 때니까 사용중일 때
 			try {
 				pstmt.close();
@@ -46,7 +46,7 @@ public class LoginDAO {
 		}
 	}
 	
-	public void rsClose() {
+	public void rsClose() {  // sql에서 select 명령문 사용했을 때 닫기
 		if(rs != null) { 
 			try {
 				rs.close();    
@@ -101,7 +101,7 @@ public class LoginDAO {
 
 	// 아이디 중복 검색
 	public LoginVO getMidCheck(String mid) {
-		LoginVO vo = new LoginVO();
+		vo = new LoginVO();
 		try {
 			sql = "select * from login where mid = ?";
 			pstmt = conn.prepareStatement(sql);
@@ -236,5 +236,28 @@ public class LoginDAO {
 			pstmtClose();
 		}
 		return res;
+	}
+
+	// 비밀번호 찾기
+	public LoginVO getfindPwd(String mid, String name) {
+		LoginVO vo = new LoginVO();
+		try {
+			sql="select * from login where mid=? and name=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			pstmt.setString(2, name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo.setMid(rs.getString("mid"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setName(rs.getString("name"));
+			}	
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return vo;
 	}
 }
