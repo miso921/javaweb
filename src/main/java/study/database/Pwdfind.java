@@ -27,6 +27,7 @@ public class Pwdfind extends HttpServlet{
 			
 		// 입력한 아이디와 이름이 DB에 저장되어있는 아이디, 이름과 같으면 비밀번호를 저장해서 jsp로 넘긴 후 짝수위치만 *로 가리고 출력 
 		if(mid.equals(vo.getMid()) && name.equals(vo.getName())) {
+			vo = dao.set
 			String pwd = vo.getPwd();
 			mid = vo.getMid();
 			name = vo.getName();
