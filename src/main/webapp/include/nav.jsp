@@ -22,16 +22,18 @@
   			<button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study1</button>
   			<div class="dropdown-menu">
 		      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/login.jsp">로그인 연습</a>
-		      <a class="dropdown-item" href="#"></a>
-		      <a class="dropdown-item" href="#">Link 3</a>
+		      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test1">URL매핑(디렉토리패턴)</a>
+		      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test5.do">URL매핑(확장자패턴1)</a>
+		      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping2/Test5.mi">URL매핑(확장자패턴2-인터페이스)</a>
+		      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/Login.re">로그인 연습2(컨트롤러)</a>
 			  </div>
 			 </div>
 			 <li>
       <div class="dropdown">
   			<button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study2</button>
   			<div class="dropdown-menu">
-		      <a class="dropdown-item" href="#">URL 매핑</a>
-		      <a class="dropdown-item" href="#">Link 2</a>
+		      <a class="dropdown-item" href="#">URL매핑(디렉토리패턴)</a>
+		      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/login/Login.pa">로그인 연습3</a>
 		      <a class="dropdown-item" href="#">Link 3</a>
 			  </div>
 			 </div>

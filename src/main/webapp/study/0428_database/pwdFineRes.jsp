@@ -24,11 +24,16 @@
 			<th>성명</th>
 			<td>${name}</td>
 		</tr>
-<%-- 		<tr>
+		<tr>
 			<th>비밀번호</th>
-			<td><c:set var="pwd" value="${pwd.length()-1}" />
-			<c:if test=""></c:if></td>
-		</tr> --%>
+			<td>
+				<%-- 
+				<c:set var="content"
+				<c:forEach var="i" begin="0" end="${pwd.length()-1}" />
+					<c:if test="${i % 2 == 0}">${fn:substring()}</c:if>
+				 --%>
+			</td>
+		</tr>
 		<tr>
 			<td>
 				<input type="button" value="돌아가기" onclick="location.href='pwdFind.jsp';" class="btn btn-danger" />

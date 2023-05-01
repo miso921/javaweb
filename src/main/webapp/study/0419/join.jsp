@@ -119,7 +119,7 @@
       </div><br /><br />
       <div>
         <div>생년월일<span style="color:red">*</span></div>
-        <div><input type="date" name="birthday" id="birthday" required min="5" max="11" placeholder="생년월일을 입력해주세요." /></div>
+        <div><input type="date" name="birthday" id="birthday" required min="5" placeholder="생년월일을 입력해주세요." /></div>
       </div><br /><br />
       <div>
         <div><input type="button" value="회원가입" onclick="fCheck()" class="btn btn-warning btn-sm form-control mb-2" /></div>
