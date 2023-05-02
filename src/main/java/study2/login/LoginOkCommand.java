@@ -1,7 +1,6 @@
 package study2.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -82,7 +81,7 @@ public class LoginOkCommand implements LoginInterface {
 			response.addCookie(cookieMid);
 			
 			
-			// 정상 로그인Ok이후에 모든 처리가 끝나면 memberMain.jsp로 보내준다.
+			// 정상 로그인Ok 이후에 모든 처리가 끝나면 memberMain.jsp로 보내준다.
 			request.setAttribute("msg", mid + "님 로그인 되었습니다.");
 			request.setAttribute("url", request.getContextPath()+"/MemberMain.re");
 		}

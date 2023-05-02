@@ -111,6 +111,14 @@ public class LoginDAO {
 		}
 		return vo;
 	}
+
+	public void setJoinOk(LoginVO vo2) {
+		try {
+			sql = "insert into login mid=?, pwd=?, name=?";
+		} catch (Exception e) {
+			
+		}
+	}
 	
 	
 		

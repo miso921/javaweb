@@ -26,7 +26,7 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <form name="myform" method="post" action="${ctp}/database/LoginOk.re">
+  <form name="myform" method="post" action="${ctp}/LoginOk.re">
     <table class="table table-bordered text-center">
       <tr>
         <td colspan="2"><font size="5">로 그 인2</font></td>

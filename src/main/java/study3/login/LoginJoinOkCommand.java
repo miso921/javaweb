@@ -22,7 +22,18 @@ public class LoginJoinOkCommand implements LoginInterface {
 		
 		LoginDAO dao = new LoginDAO();
 		
-		LoginVO vo2 = dao.getMidCheck(mid);
+		LoginVO fVO = dao.getMidCheck(mid);
+		
+		String msg = "", url = "";
+		if(fVO.getMid() != null ) {
+			msg = "아이디가 중복되었습니다!";
+			url = "/Join.re";
+		}
+		else {
+			dao.setJoinOk(vo);
+			msg = "회원가입 성공~";
+			url = "/Login.re";
+		}
 	}
-
+	
 }

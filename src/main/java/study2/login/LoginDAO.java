@@ -19,7 +19,6 @@ public class LoginDAO {
 	private ResultSet rs = null; // DB에서 select 명령할 때만 사용
 	
 	private LoginVO vo = null; // 많은 메소드에서 공통적으로 사용하기 때문에 전역변수로 사용 
-	
 	String sql = "";
 	
 	public LoginDAO() {
@@ -29,6 +28,7 @@ public class LoginDAO {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			
 			conn = DriverManager.getConnection(url, user, password); 
 		} catch (ClassNotFoundException e) {
 				System.out.println("Driver 검색 실패~!"); // jdbc 있는지 확인하기
@@ -89,6 +89,8 @@ public class LoginDAO {
 			sql = "update login set point = point + 10, lastDate = now(), todayCount = todayCount + 1  where mid =?"; // ?는 방금 넘어온 mid
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid); // preparestatment (?)를 채워준다
+			pstmt.setInt(2, todayCount);
+			pstmt.setString(3, mid);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 오류 :"+e.getMessage());
