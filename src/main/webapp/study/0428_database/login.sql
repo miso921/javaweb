@@ -19,3 +19,5 @@ desc login;
 insert into login values (default, "admin", "1234", "관리자", default, default, default);
 
 select * from login;
+
+delete from login;

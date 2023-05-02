@@ -43,7 +43,7 @@
   <div class="row">
     <div class="col"></div>
     <div class="col"><button type="button" onclick="searchCehck()" class="btn btn-primary">개별조회</button></div>
-    <div class="col"><a href="${ctp}/database/List.re" class="btn btn-success">전체조회</a></div>
+    <div class="col"><a href="${ctp}/database/MemberList.re" class="btn btn-success">전체조회</a></div>
     <div class="col"><a href="${ctp}/database/Logout.re" class="btn btn-danger">로그아웃</a></div>
     <div class="col"></div>
   </div>

@@ -45,8 +45,8 @@ public class LoginController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
 		}
-		else if(com.equals("/List")) {
-			command = new ListCommand();
+		else if(com.equals("/MemberList")) {
+			command = new MemberListCommand();
 			command.execute(request, response);
 			viewPage += "/memberList.jsp";
 		}
@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
 		}
-		else if(com.equals("/memberSearch")) {
+		else if(com.equals("/MemberSearch")) {
 			command = new memberSearchCommand(); // mid도 같이 실려옴
 			command.execute(request, response);
 			viewPage += "/memberSearch.jsp";

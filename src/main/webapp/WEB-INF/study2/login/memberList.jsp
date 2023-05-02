@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="/include/header.jsp"></jsp:include>
 <p><br /></p>
-<div class='container'>
+<div class='container text-center'>
 	<h2>전 체 회 원 목 록</h2>
 	<table class="table table-hover text-center">
 		<tr class="table-dark text-dark">
@@ -47,7 +47,31 @@
 			</tr>
 		</c:forEach>
 		<tr><td colspan="7" class="m-0 p-0"></td></tr>  <!-- 표 마지막 줄 생성 -->
+		<tr>
+			<td>
+				<!-- 처음으로 / 이전 페이지 / (현재 페이지 번호 / 총 페이지 수) / 다음 페이지 / 마지막 페이지  -->
+				<c:if test="${pag > 1}">
+					<a href="${ctp}/MemberList.re?pageSize=${pageSize}&pag=1" title="첫 페이지로">◁◁처음으로</a> 	
+					<a href="${ctp}/MemberList.re?pageSize=${pageSize}&pag=${pag-1}" title="이전 페이지로">◀이전 페이지로</a> 	
+				</c:if>
+					${pag} / ${totPage} 
+				<c:if test="${pag < totPage}">
+					<a href="${ctp}/MemberList.re?pageSize=${pageSize}&pag=${pag+1}" title="다음 페이지로">다음 페이지로▶</a> 	
+					<a href="${ctp}/MemberList.re?pageSize=${pageSize}&pag=${totPage}" title="마지막 페이지로">마지막으로▷▷</a> 	
+				</c:if>
+			</td>
+		</tr>	
 	</table>
+	<div class="text-center">
+		<c:if test="${pag > 1}">[<a href="${ctp}/MemberList.gu?pageSize=${pageSize}&pag=1">첫페이지</a>]</c:if>
+		<c:if test="${curBlock > 0 }">[<a href="${ctp}/MemberList.gu?pageSize=${pageSize}&pag=${(curBlock-1)*blockSize + 1}">이전블록</a>]</c:if>
+		<c:forEach var = "i" begin="${curBlock*blockSize + 1}" end="${curBlock*blockSize + blockSize}" varStatus="st">
+			<c:if test="${i <= totPage && i == pag}"><font color="red">${i}</font></c:if> <!-- 현재 페이지 -->
+			<c:if test="${i <= totPage && i != pag}">[<a href="${ctp}/MemberList.gu?pageSize=${pageSize}&pag=${i}">${i}</a>]</c:if> <!-- 배타적 처리 -->
+		</c:forEach>
+		<c:if test="${curBlock > lastBlock}">[<a href="${ctp}/MemberList.gu?pageSize=${pageSize}&pag=${(curBlock+1)*blockSize + 1}">다음블록</a>]</c:if>
+		<c:if test="${pag < totPage}">[<a href="${ctp}/MemberList.gu?pageSize=${pageSize}&pag=${totPage}">마지막 페이지</a>]</c:if>
+	</div>
 	<br />
 	<div>
 		<a href="${ctp}/study/0428_database/memberMain.jsp" class="btn btn-primary">돌아가기</a>

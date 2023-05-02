@@ -86,9 +86,9 @@ public class LoginDAO {
 	// 방문 포인트 증가시키기, 최종 접속일 업데이트
 	public void setPointPlus(String mid, int point, int todayCount) {
 		try {
-			sql = "update login set point = point + 10, lastDate = now(), todayCount = todayCount + 1  where mid =?"; // ?는 방금 넘어온 mid
+			sql = "update login set point = ?, todayCount = ?, lastDate = now() where mid =?"; // ?는 방금 넘어온 mid
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mid); // preparestatment (?)를 채워준다
+			pstmt.setInt(1, point); // preparestatment (?)를 채워준다
 			pstmt.setInt(2, todayCount);
 			pstmt.setString(3, mid);
 			pstmt.executeUpdate();
@@ -153,11 +153,13 @@ public class LoginDAO {
 	}
 
 //전체회원조회
-	public ArrayList<LoginVO> getLoginList() {
+	public ArrayList<LoginVO> getLoginList(int startIndexNo, int pageSize) {
 		ArrayList<LoginVO> vos = new ArrayList<>();
 		try {
-			sql = "select * from login order by idx desc";
+			sql = "select * from login order by idx desc limit ?,?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startIndexNo);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -259,5 +261,22 @@ public class LoginDAO {
 			rsClose();
 		}
 		return vo;
+	}
+	
+	// 총 레코드 건수 구하기
+	public int getTotRecCnt() {
+		int totRecCnt = 0;
+		try {
+			sql = "select count(*) as cnt from login";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			totRecCnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return totRecCnt;
 	}
 }

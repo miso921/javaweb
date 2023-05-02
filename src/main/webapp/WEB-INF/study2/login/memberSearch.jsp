@@ -61,7 +61,7 @@
 	</table>
 	<br />
 	<p>
-		<a href="${ctp}/memberMain.re" class="btn btn-success mr-3">돌아가기</a>
+		<a href="${ctp}/MemberMain.re" class="btn btn-success mr-3">돌아가기</a>
 		<c:if test="${vo.mid == sMid}">
 			<a href="${ctp}/Update.re" class="btn btn-success mr-3">회원정보수정</a>
 			<a href="javascript:deleteCheck()" class="btn btn-success mr-3">회원탈퇴</a>

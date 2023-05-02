@@ -62,9 +62,9 @@ public class LoginOkCommand implements LoginInterface {
 			HttpSession session = request.getSession();
 			session.setAttribute("sMid", mid);
 			session.setAttribute("sName", vo.getName()); // vo는 get으로 읽어옴!
-			session.setAttribute("sPoint", vo.getPoint()+10); // 현재는 DB에 로그인 시 +10씩 늘게끔 저장만 했고 불러오진 않았기 때문에 DAO에서 처리 전인 여기다가 +10을 한다.
+			session.setAttribute("sPoint", vo.getPoint()); // 현재는 DB에 로그인 시 +10씩 늘게끔 저장만 했고 불러오진 않았기 때문에 DAO에서 처리 전인 여기다가 +10을 한다.
 			session.setAttribute("sLastDate", vo.getLastDate());
-			session.setAttribute("sTodayCount", vo.getTodayCount()+1); // 현재는 DB에 로그인 시 +10씩 늘게끔 저장만 했고 불러오진 않았기 때문에 DAO에서 처리 전인 여기다가 +1을 한다.
+			session.setAttribute("sTodayCount", vo.getTodayCount()); // 현재는 DB에 로그인 시 +10씩 늘게끔 저장만 했고 불러오진 않았기 때문에 DAO에서 처리 전인 여기다가 +1을 한다.
 			// DAO에서 처리하기 전에 최종 접속일(getLastDate의 10자리)과 현재 날짜를 비교해서 같다면 +1을 하고 다르다면(날짜가 다르면 하루가 지났다는 것이기 때문에) 0으로 업데이트!
 			
 			// 2.쿠키에 아이디를 저장/해제 처리한다.
@@ -80,10 +80,10 @@ public class LoginOkCommand implements LoginInterface {
 			}
 			response.addCookie(cookieMid);
 			
-			
 			// 정상 로그인Ok 이후에 모든 처리가 끝나면 memberMain.jsp로 보내준다.
 			request.setAttribute("msg", mid + "님 로그인 되었습니다.");
 			request.setAttribute("url", request.getContextPath()+"/MemberMain.re");
+			System.out.println("정상");
 		}
 		else {
 			// 회원 인증 실패 처리...
