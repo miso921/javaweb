@@ -125,7 +125,6 @@
 			<c:if test="${pag < totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/GuestList.gu?pageSize=${pageSize}&pag=${totPage}">마지막 페이지</a></li></c:if>
 		</ul>	
 	</div>
-	
 </div>
 <p><br /></p>
 <jsp:include page="/include/footer.jsp" />
