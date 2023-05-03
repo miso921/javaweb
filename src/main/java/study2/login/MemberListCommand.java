@@ -13,7 +13,6 @@ public class MemberListCommand implements LoginInterface {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LoginDAO dao = new LoginDAO();
 		
-		
 		// 1. 현재 페이지 번호 구하기
 		int pag = request.getParameter("pag")==null ? 1 : Integer.parseInt(request.getParameter("pag"));
 		
@@ -42,6 +41,7 @@ public class MemberListCommand implements LoginInterface {
 		// 3. 마지막 블록을 구한다.
 		int lastBlock = (totPage -1) / blockSize;
 		
+		// 지정된 페이지의 자료를 요청한 한 페이지 분량만큼 가져온다.
 		ArrayList<LoginVO> vos = dao.getLoginList(startIndexNo, pageSize);  
 
 		request.setAttribute("vos", vos);

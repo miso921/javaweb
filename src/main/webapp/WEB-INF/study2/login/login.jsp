@@ -33,11 +33,11 @@
       </tr>
       <tr>
         <th>아이디</th>
-        <td><input type="text" name="mid" value="${mid}" autofocus required class="form-control"/></td>
+        <td><input type="text" name="mid" value="${mid}" autofocus class="form-control"/></td>
       </tr>
       <tr>
         <th>비밀번호</th>
-        <td><input type="password" name="pwd" value="pwd" required class="form-control"/></td>
+        <td><input type="password" name="pwd" class="form-control"/></td>
       </tr>
       <tr>
         <td colspan="2">
