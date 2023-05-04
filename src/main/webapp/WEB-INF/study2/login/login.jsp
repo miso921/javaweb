@@ -37,7 +37,7 @@
       </tr>
       <tr>
         <th>비밀번호</th>
-        <td><input type="password" name="pwd" class="form-control"/></td>
+        <td><input type="password" name="pwd" class="form-control" maxlength="9" required /></td>
       </tr>
       <tr>
         <td colspan="2">

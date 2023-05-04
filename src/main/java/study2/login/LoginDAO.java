@@ -279,4 +279,9 @@ public class LoginDAO {
 		}
 		return totRecCnt;
 	}
+
+	public long getHashTableSearch(int randomKey) {
+		
+		return 0;
+	}
 }

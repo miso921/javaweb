@@ -29,7 +29,7 @@
 			<td>
 		</tr>
 	</table>		
-				<!-- 한 페이지 분량 처리 -->
+	<!-- 한 페이지 분량 처리 -->
 	<table class="table table-borderless mb-0 p-0">
 		<tr>
 			<td>
@@ -67,9 +67,19 @@
 		<c:forEach var="vo" items="${vos}" varStatus="st">
 			<tr>
 				<td>${vo.idx}</td>
-				<td>${vo.title}</td>
+				<td>
+					${vo.title}
+					<c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
+				</td>
 				<td>${vo.nickName}</td>
-				<td>${fn:substring(vo.wDate,0,19)}</td>
+				<td>
+					<!-- 1일(24시간) 이내는 시간만 표시, 이후는 날짜와 시간을 표시 : 2023-05-04 10:35:25 -->
+					<!-- 단(24시간 안에 만족하는 자료), 날짜가 오늘 날짜만 시간으로 표시하고, 어제 날짜는 날짜로 표시 -->
+					<c:if test="${vo.hour_diff > 24}">${fn:substring(vo.wDate,0,10)}</c:if>
+					<c:if test="${vo.hour_diff <= 24}">
+						${vo.day_diff == 0 ? fn:substring(vo.wDate,11,19) : fn:substring(vo.wDate,0,16)}
+					</c:if>
+				</td>
 				<td>${vo.readNum}</td>
 				<td>${vo.good}</td>
 			</tr>

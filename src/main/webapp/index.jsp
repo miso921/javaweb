@@ -45,8 +45,8 @@
 	    <div class="col-sm-8">
 	      <h2>TITLE HEADING</h2>
 	      <h5>Title description, Dec 7, 2017</h5>
-	      <div class="fakeimg">Fake Image</div>
-	      <p>Some text..</p>
+	      <div class="fakeimg"><style background-img src = "images/나물체험/명이2.jpg" width="150px"/></div>
+	      <i class="fa-thin fa-calendar-days fa-bounce"></i>
 	      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 	      <br>
 	      <h2>TITLE HEADING</h2>

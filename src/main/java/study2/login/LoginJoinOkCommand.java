@@ -44,5 +44,4 @@ public class LoginJoinOkCommand implements LoginInterface {
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", request.getContextPath()+url);
 	}
-
 }
