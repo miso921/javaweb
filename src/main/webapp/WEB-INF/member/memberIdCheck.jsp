@@ -18,15 +18,14 @@
 		}
 		
 		function idCheck() {
-			let mid = childForm.value;
+			let mid = childForm.mid.value;
 			
 			if(mid.trim() == "") {
-				alert("아이디를 입력하세요"){
+				alert("아이디를 입력하세요");
 					childForm.mid.focus();
 				}
-				else {
-					childForm.submit();
-				}
+			else {
+				childForm.submit();
 			}
 		}
 	</script>
