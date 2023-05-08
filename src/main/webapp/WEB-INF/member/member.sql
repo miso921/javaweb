@@ -16,7 +16,7 @@ create table member(
 	hobby    varchar(100),                 /* 회원 취미(2개 이상 선택 가능, 구분자는 '/'로 한다.) */
 	photo    varchar(100) default 'noimage.jpg', /* 회원 사진 */
 	content  text,                         /* 회원 소개 */
-	userInfo char(6) default '공개',				 /* 회원 정보 공개 여부(공개/비공개) */
+	userInfor char(6) default '공개',				 /* 회원 정보 공개 여부(공개/비공개) */
 	userDel  char(2) default 'NO',         /* 회원 탈퇴신청 여부(NO: 현재 활동중, OK: 탈퇴신청중) */
 	point    int default 100,              /* 회원 누적포인트 (가입포인트 100점 증정, 1회 방문 시 10점 증가, 1일 최대 50점까지 증가 */
 	level    int default 1,                /* 회원등급(0:관리자, 1:준회원, 2:정회원, 3:우수회원, (4:운영자) */
@@ -24,9 +24,12 @@ create table member(
 	startDate datetime default now(),      /* 최초 가입일 */
 	lastDate datetime default now(),       /* 마지막 접속일 */
 	todayCnt int default 0,                /* 오늘 방문횟수 */
+	salt     char(8) not null,             /* 비밀번호 보안을 위한 해시키 */
 	primary key(idx,mid)                   /* 주키 : idx(고유번호), mid(회원고유아이디) */
 );
 
 desc member;
 
 select * from member;
+
+insert to 

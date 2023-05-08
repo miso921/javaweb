@@ -17,7 +17,7 @@
 		<div class="modal-content p-4">
 			<h2 class='text-center'><b><font size="5">회 원 로 그 인</font></b></h2>
 			<p class="text-center"> 회원 아이디와 비밀번호를 입력해주세요</p>
-			<form name="myform" method="post" action="${ctp}/MemberInputOk.mem" class="was-validated">
+			<form name="myform" method="post" action="${ctp}/MemberLoginOk.mem" class="was-validated">
 		    <div class="form-group">
 		      <label for="mid">회원아이디</label>
 		      <input type="text" class="form-control" name="mid" id="mid" value="${cMid}" placeholder="아이디를 입력하세요" required autofocus />
@@ -39,8 +39,8 @@
 		    <div class="row text-center" style="font-size=12px">
 		    	<span class="col"><input type="checkbox" name="idSave" checked />아이디 저장</span>
 		    	<span class="col">
-		    		[<a href="#">아이디 찾기</a>] 
-		    		[<a href="#">비밀번호 찾기</a>]
+		    		[<a href="${ctp}/MemberFindMid.mem">아이디 찾기</a>] 
+		    		[<a href="${ctp}/MemberFindPwd.mem">비밀번호 찾기</a>]
 		    	</span>
 		    </div>
 		    <input type="hidden" name="hostIp" value="<%=request.getRemoteAddr()%>" />

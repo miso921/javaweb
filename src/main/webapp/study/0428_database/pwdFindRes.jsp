@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>pwdFineRes.jsp</title>
+	<title>pwdFindRes.jsp</title>
 	<jsp:include page="/include/bs4.jsp" />
 </head>
 <body>

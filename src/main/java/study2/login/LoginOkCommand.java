@@ -82,7 +82,7 @@ public class LoginOkCommand implements LoginInterface {
 			
 			// 정상 로그인Ok 이후에 모든 처리가 끝나면 memberMain.jsp로 보내준다.
 			request.setAttribute("msg", mid + "님 로그인 되었습니다.");
-			request.setAttribute("url", request.getContextPath()+"/MemberMain.re");
+			request.setAttribute("url", request.getContextPath()+"/MemberMain.mem");
 			System.out.println("정상");
 		}
 		else {

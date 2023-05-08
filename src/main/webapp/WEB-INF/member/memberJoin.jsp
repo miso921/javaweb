@@ -12,13 +12,85 @@
 	<script src="${ctp}/js/woo.js"></script>
 	<script>
 		'use strict';
+		// 아이디와 닉네임 중복체크 버튼 눌렀는지 여부 확인을 위한 변수 (버튼 누른 후 내용 수정 불가하게 처리)
+		let idCheckSw = 0;
+		let nickCheckSw = 0;
 		
 		function fCheck() {
 		// 유효성검사
+		// 아이디, 비밀번호, 닉네임, 성명, 이메일, 홈페이지, 전화번호
+
+		let regMid = /^[a-zA-Z0-9_]{4,20}$/;
+		let regTel = /\d{2,3}-\d{3,4}-\d{4}$/g;
 		
-		myform.submit();
+		let mid = myform.mid.value.trim();
+		let email1 = myform.email1.value.trim();
+		let email2 = myform.email2.value;
+		let email = email1 + "@" + email2;
+		
+		let tel1 = myform.tel1.value;
+		let tel2 = myform.tel2.value.trim();
+		let tel3 = myform.tel3.value.trim();
+		let tel = tel1 + "-" + tel2 + "-" + tel3;
+		
+		let submitFlag = 0; // 모든 검사가 정상으로 확인되면 submitFlag는 1로 변경처리한다!  
+		
+		if(!regMid.test(mid)) {
+			alert("아이디는 4~20자리의 영문 소/대문자와 숫자, 밑줄(_)만 사용 가능합니다.");
+			myform.mid.focus();
+			return false;
+		}
+		// 기타 체크...
+		else if(tel2 != "" && tel3 != "") {
+			if(!regTel.test(tel)) {
+				alert("전화번호 형식을 확인하세요(000-0000-0000)");
+			 	myform.tel2.focus();
+				return false;
+		 	}
+			else {
+				submitFlag = 1;				
+			}
+	  }
+		
+		// 모든 체크를 마치고 정상적일 때 수행
+		else {
+			tel2 = " ";
+			tel3 = " ";
+			tel = tel1 + "-" + tel2 + "-" + tel3;   // front나 back 중 한 곳에서 처리해도 상관없다
+			submitFlag = 1;
 		}
 		
+		// 전송 전에 '주소'를 하나로 묶어 전송할 준비를 한다.
+		let postcode = myform.postcode.value + " ";
+		let roadAddress = myform.roadAddress.value + " ";
+		let detailAddress = myform.detailAddress.value + " ";
+		let extraAddress = myform.extraAddress.value + " ";
+		let address = postcode + "/" + roadAddress + "/" + detailAddress + "/" + extraAddress + "/";
+		myform.address.value = address;
+		
+		// 전송 전에 모든 검사가 끝나면 submitFlag가 1로 바뀌게 된다. 이 때, 값들을 서버로 전송한다.
+		if(submitFlag == 1) {
+			if(idCheckSw == 0) {
+				alert("아이디 중복체크 버튼을 눌러주세요!");
+				document.getElementById("midBtn").focus();
+			}
+			else if(nickCheckSw == 0) {
+				alert("닉네임 중복체크 버튼을 눌러주세요!");
+				document.getElementById("nickBtn").focus();
+			}
+			else {
+				myform.email.value = email;
+				myform.tel.value = tel;
+				// 앞쪽 tel은 hidden으로 넘기려는 필드의 name이고 뒤쪽 tel은 function에서 만든 변수 값
+				
+				myform.submit();
+			}
+		}
+		else {
+			alert("폼의 내용을 확인하세요.");
+		}
+	}
+		// 아이디 중복 체크
 		function idCheck() {
 			let mid = myform.mid.value;
 			let url = "${ctp}/MemberIdCheck.mem?mid="+mid;
@@ -28,6 +100,23 @@
 				myform.mid.focus();
 			}
 			else {
+				idCheckSw = 1;
+				myform.mid.readOnly = true;
+				window.open(url,"nWin","width=580px,height=250px");
+			}
+		}
+		// 닉네임 중복 체크
+		function nickCheck() {
+			let nickName = myform.nickName.value;
+			let url = "${ctp}/MemberNickCheck.mem?nickName="+nickName;
+			
+			if(nickName.trim() == '') {
+				alert("닉네임을 입력하세요.");
+				myform.nickName.focus();
+			}
+			else {
+				nickCheckSw = 1;
+				myform.nickName.readOnly = true;
 				window.open(url,"nWin","width=580px,height=250px");
 			}
 		}
@@ -41,15 +130,15 @@
     <h2>회 원 가 입</h2>
     <br/>
     <div class="form-group">
-      <label for="mid">아이디 : &nbsp; &nbsp;<input type="button" value="아이디 중복체크" class="btn btn-secondary btn-sm" onclick="idCheck()"/></label>
-      <input type="text" class="form-control" name="mid" id="mid" placeholder="아이디를 입력하세요." required autofocus/>
+      <label for="mid">아이디 : &nbsp; &nbsp;<input type="button" id="midBtn" value="아이디 중복체크" class="btn btn-secondary btn-sm" onclick="idCheck()" /></label>
+      <input type="text" class="form-control" name="mid" id="mid" placeholder="아이디를 입력하세요." required autofocus />
     </div>
     <div class="form-group">
       <label for="pwd">비밀번호 :</label>
       <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요." name="pwd" required />
     </div>
     <div class="form-group">
-      <label for="nickName">닉네임 : &nbsp; &nbsp;<input type="button" value="닉네임 중복체크" class="btn btn-secondary btn-sm" onclick="nickCheck()"/></label>
+      <label for="nickName">닉네임 : &nbsp; &nbsp;<input type="button" id="nickBtn" value="닉네임 중복체크" class="btn btn-secondary btn-sm" onclick="nickCheck()"/></label>
       <input type="text" class="form-control" id="nickName" placeholder="별명을 입력하세요." name="nickName" required />
     </div>
     <div class="form-group">
@@ -87,7 +176,7 @@
     </div>
     <div class="form-group">
       <label for="birthday">생일</label>
-      <input type="date" name="birthday" class="form-control"/>
+      <input type="date" name="birthday" value="<%=java.time.LocalDate.now()%>" class="form-control"/>
     </div>
     <div class="form-group">
       <div class="input-group mb-3">
@@ -113,29 +202,30 @@
     </div>
     <div class="form-group">
       <label for="address">주소</label>
-      <input type="hidden" name="address" id="address">
+      <input type="hidden" name="address" id="address" />
       <div class="input-group mb-1">
-        <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="form-control">
+        <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="form-control" />
         <div class="input-group-append">
-          <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
+          <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-secondary" />
         </div>
       </div>
-      <input type="text" name="roadAddress" id="sample6_address" size="50" placeholder="주소" class="form-control mb-1">
+      <input type="text" name="roadAddress" id="sample6_address" size="50" placeholder="주소" class="form-control mb-1" />
       <div class="input-group mb-1">
-        <input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소" class="form-control"> &nbsp;&nbsp;
+        <input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소" class="form-control" /> &nbsp;&nbsp;
         <div class="input-group-append">
-          <input type="text" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="form-control">
+          <input type="text" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="form-control" />
         </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="homepage">Homepage address:</label>
+      <label for="homePage">HomePage address:</label>
       <input type="text" class="form-control" name="homePage" value="http://" placeholder="홈페이지를 입력하세요." id="homePage"/>
     </div>
     <div class="form-group">
       <label for="name">직업</label>
       <select class="form-control" id="job" name="job">
-        <option>학생</option>
+        <!-- <option value="">직업을 선택하세요</option> -->
+        <option selected>학생</option>
         <option>회사원</option>
         <option>공무원</option>
         <option>군인</option>
@@ -212,7 +302,9 @@
     </div>
     <button type="button" class="btn btn-secondary" onclick="fCheck()">회원가입</button> &nbsp;
     <button type="reset" class="btn btn-secondary">다시작성</button> &nbsp;
-    <button type="button" class="btn btn-secondary" onclick="">돌아가기</button>
+    <button type="button" class="btn btn-secondary" onclick="location.href='';">돌아가기</button>
+    <input type="hidden" name="tel" />
+    <input type="hidden" name="email" />
   </form>	
 </div>
 <p><br /></p>
