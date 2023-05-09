@@ -63,10 +63,13 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/memberList.jsp";
 		}
-		else if(com.equals("/FindMid")) {
-			command = new MemberFindMidCommand();
+		else if(com.equals("/MemberFindMid")) {
+			viewPage += "/memberFindMid.jsp";
+		}
+		else if(com.equals("/MemberFindMidOk")) {
+			command = new MemberFindMidOkCommand();
 			command.execute(request, response);
-			viewPage += "/memberList.jsp";
+			viewPage = "/include/message.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

@@ -34,7 +34,9 @@
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping2/Test5.mi">URL매핑(확장자패턴2-인터페이스)</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/Login.re">로그인 연습2(컨트롤러)</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/Password.st">암호화 연습</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/UuidForm.st">uuid 연습</a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/UuidForm.st">UUID 연습</a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/AjaxTest1">aJax 연습1</a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/UserList.st">aJax 연습2</a>
 				  </div>
 				 </div>
 				 <li>

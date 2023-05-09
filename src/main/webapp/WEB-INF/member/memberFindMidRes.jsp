@@ -6,15 +6,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>title</title>
+	<title>MemberFindMidRes.jsp</title>
 	<jsp:include page="/include/bs4.jsp" />
 </head>
 <body>
 <jsp:include page="/include/header.jsp" />
 <p><br /></p>
 <div class='container'>
-	<h2>아 이 디 찾 기</h2>
-	<p></p>
+	<h2><b>아 이 디 찾 기 결 과</b></h2>
+	<p>${mid}</p>
 </div>
 <p><br /></p>
 <jsp:include page="/include/footer.jsp" />

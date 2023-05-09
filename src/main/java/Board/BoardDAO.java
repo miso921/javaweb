@@ -154,5 +154,19 @@ public class BoardDAO {
 			getConn.pstmtClose();
 		}
 	}
+	// 좋아요 -1 증가시키기
+
+	public void setGoodMiunsUpdate(int idx) {
+		try {
+			sql = "update board set good = good - 1 where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " +e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}	
+	}
 	
 }

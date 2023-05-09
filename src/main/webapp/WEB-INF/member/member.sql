@@ -8,7 +8,7 @@ create table member(
 	name     varchar(20) not null,         /* 회원 성명 */
 	gender   varchar(4) default '여자',     /* 회원 성별 */
 	birthday datetime default now(),       /* 회원 생일 */
-	tel      varchar(15),                  /* 전화번호 (010-1234-5678_ */
+	tel      varchar(15),                  /* 전화번호 (010-1234-5678) */
 	address  varchar(100),                 /* 주소(다음 API 우편번호 활용) */
 	email    varchar(50) not null,         /* ★☆이메일(아이디/비밀번호 분실시에 사용)-형식체크필수!!!!!!!!!!!!☆★ */
 	homePage varchar(50),                  /* 홈페이지(블로그) 주소 */

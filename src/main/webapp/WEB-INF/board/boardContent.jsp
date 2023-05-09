@@ -20,7 +20,9 @@
 		'use strict';
 		
 		function goodCheck() {
+			let good
 			location.href = "${ctp}/BoardGoodCheck.bo?idx=${vo.idx}";
+			
 		}
 	</script>
 </head>
@@ -52,7 +54,7 @@
 			<td>${vo.homePage}</td>
 			<th>좋아요</th>
 				<td>
-					${vo.good}(<a href="javascript:goodCheck()">👍</a>)
+					${vo.good}(<a href="javascript:goodCheck()" id="good">👍</a>)
 				</td>
 		</tr> 		
 		<tr>

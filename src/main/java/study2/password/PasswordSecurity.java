@@ -1,4 +1,4 @@
-package study2;
+package study2.password;
 
 import study2.login.LoginDAO;
 
