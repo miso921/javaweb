@@ -47,6 +47,7 @@ public class BoardListCommand implements BoardInterface {
 		ArrayList<BoardVO> vos = dao.getBoardList(startIndexNo, pageSize);
 		
 		request.setAttribute("vos", vos);
+		
 		request.setAttribute("pag", pag);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("totPage", totPage);

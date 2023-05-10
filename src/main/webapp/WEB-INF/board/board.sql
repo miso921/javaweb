@@ -22,6 +22,25 @@ insert into board values (default, 'admin', '관리맨','게시판 서비스를 
 
 select * from board;
 
+/* 게시판에 댓글 달기 */
+create table boardReply (
+	idx      int not null auto_increment,        /* 댓글의 고유번호 */
+	boardIdx int not null,                       /* 원본글의 고유번호(외래키로 지정) */
+	mid      varchar(20) not null,               /* 댓글올린이의 아이디 (닉네임은 수정가능하기 때문에 mid도 필드에 넣어주는 것) */
+	nickName varchar(20) not null,               /* 댓글올린이의 닉네임 */ 
+	wDate    datetime default now(),             /* 댓글올린 날짜 */ 
+	hostIp   varchar(50) not null,               /* 댓글올린 PC의 고유 IP */ 
+	content  text not null,                      /* 댓글내용 */ 
+	primary key(idx),                            /* 기본키 : 고유번호 */
+	foreign key(boardIdx) references board(idx)  /* 외래키 설정  - unique key나 primary key가 있어야 외래키 만들 수 있음!*/
+	on update cascade                            /* 원본 키를 수정하면 같이 수정하겠다는 의미 */
+	on delete restrict                           /* 원본 키의 게시물을 삭제할 때 댓글이 달려있다면 삭제 불가하게 할 수 있음! */
+);
+
+desc boardReply;
+
+
+
 /* 날짜 함수 처리 연습 */
 select now();    /* 오늘 날짜 출력 */
 select year(now());
@@ -75,3 +94,10 @@ select *, datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) 
 /* 날짜양식 date_format() : 4자리년도(%Y), 월(%m), 일(%d) */
 select timestampdiff(hour, date_format(wDate, '%Y-%m-%d %H:%i'), now()) as hour_diff from board;
 select 
+
+
+/* 이전글 / 다음글 꺼내오기 */
+select * from board;
+select * from board where idx = 6;
+select idx,title from board where idx < 6 order by idx desc limit 1;  /* 6번보다 이전글 */
+select idx,title from board where idx > 6 limit 1;    /* 6번보다 다음글 */

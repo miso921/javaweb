@@ -116,6 +116,7 @@
 			});
 		}
 		
+		// 회원정보 수정하기
 		function userUpdate() {
 			let idx = $("#idx").val();
 			let mid = $("#mid").val().trim();

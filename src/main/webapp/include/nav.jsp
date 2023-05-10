@@ -1,9 +1,8 @@
-<!-- nav.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	int level = session.getAttribute("sLevel") == null ? 99 : (int) session.getAttribute("sLevel");
- 	pageContext.setAttribute("level", level);
+  int level = session.getAttribute("sLevel")==null ? 99 : (int) session.getAttribute("sLevel");
+  pageContext.setAttribute("level", level);
 %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -23,51 +22,52 @@
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="#">PDS</a>
-	      </li> 
-	      <li>
-	      <div class="dropdown">
-	  			<button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study1</button>
-	  			<div class="dropdown-menu">
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/login.jsp">로그인 연습</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test1">URL매핑(디렉토리패턴)</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test5.do">URL매핑(확장자패턴1)</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping2/Test5.mi">URL매핑(확장자패턴2-인터페이스)</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/Login.re">로그인 연습2(컨트롤러)</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/Password.st">암호화 연습</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/UuidForm.st">UUID 연습</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/AjaxTest1">aJax 연습1</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/UserList.st">aJax 연습2</a>
-				  </div>
-				 </div>
-				 <li>
-	      <div class="dropdown">
-	  			<button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study2</button>
-	  			<div class="dropdown-menu">
-			      <a class="dropdown-item" href="#">URL매핑(디렉토리패턴)</a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/login/Login.pa">로그인 연습3</a>
-			      <a class="dropdown-item" href="#">Link 3</a>
-				  </div>
-				 </div>
-	      <li>
-	      <li>
-	      <div class="dropdown">
-	  			<button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Information</button>
-	  			<div class="dropdown-menu">
-			      <a class="dropdown-item" href="${ctp}/MemberMain.mem">회원전용방</a>
-			      <a class="dropdown-item" href="#">회원정보수정</a>
-			      <a class="dropdown-item" href="#">회원목록</a>
-			      <a class="dropdown-item" href="#">회원탈퇴</a>
-				  </div>
-				 </div>
 	      </li>
-	      </c:if> 
-	      <li class="nav-item">
-	      	<c:if test="${level > 4}"><a class="nav-link" href="${pageContext.request.contextPath}/MemberLogin.mem">Login</a></c:if>
-	      	<c:if test="${level <= 4}"><a class="nav-link" href="${pageContext.request.contextPath}/MemberLogout.mem">Logout</a></c:if>
+	      <li>
+				  <div class="dropdown">
+				    <button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study1</button>
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/login.jsp">로그인연습</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test1">URL매핑(디렉토리패턴)</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test5.do">URL매핑(확장자패턴1)</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping2/Test5.mi">URL매핑(확장자패턴2)</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/Login.re">로그인연습2</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/Password.st">암호화연습</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/UuidForm.st">UUID연습</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/AjaxTest1">aJax연습1</a>
+				      <a class="dropdown-item" href="${pageContext.request.contextPath}/UserList.st">aJax연습2</a>
+				    </div>
+				  </div>  
+	      </li>   
+	      <li>
+				  <div class="dropdown">
+				    <button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study2</button>
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="#">URL매핑(디렉토리패턴)</a>
+				      <a class="dropdown-item" href="#">로그인연습3</a>
+				      <a class="dropdown-item" href="#">Link 3</a>
+				    </div>
+				  </div>  
+	      </li>   
+	      <li>
+				  <div class="dropdown">
+				    <button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">MyPage</button>
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="${ctp}/MemberMain.mem">회원메인방</a>
+				      <a class="dropdown-item" href="#">회원정보수정</a>
+				      <a class="dropdown-item" href="#">회원리스트</a>
+				      <a class="dropdown-item" href="#">회원탈퇴</a>
+				    </div>
+				  </div>  
 	      </li>
+      </c:if>
+      <li class="nav-item">
+        <c:if test="${level > 4}"><a class="nav-link" href="${pageContext.request.contextPath}/MemberLogin.mem">Login</a></c:if>
+        <c:if test="${level <= 4}"><a class="nav-link" href="${pageContext.request.contextPath}/MemberLogout.mem">Logout</a></c:if>
+      </li>  
       <li class="nav-item">
         <c:if test="${level > 4}"><a class="nav-link" href="${pageContext.request.contextPath}/MemberJoin.mem">Join</a></c:if>
       </li>  
     </ul>
-  </div>  
+  </div>
 </nav>

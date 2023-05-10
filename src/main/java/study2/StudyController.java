@@ -13,6 +13,7 @@ import study2.ajax2.UserDeleteCommand;
 import study2.ajax2.UserInputCommand;
 import study2.ajax2.UserListCommand;
 import study2.ajax2.UserSearchCommand;
+import study2.ajax2.UserUpdateCommand;
 import study2.password.PassOk1Command;
 import study2.password.PassOk2Command;
 import study2.uuid.UuidCommand;

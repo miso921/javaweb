@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>boardInput.jsp</title>
+	<title>boardUpdate.jsp</title>
 	<jsp:include page="/include/bs4.jsp" />
 	<script>
 		'use strict';
@@ -33,8 +33,8 @@
 <jsp:include page="/include/header.jsp" />
 <p><br /></p>
 <div class='container'>
-	<h2 class="text-center">게 시 판 글 쓰 기</h2>
-	<form name="myform" method="post" action="${ctp}/BoardInputOk.bo">
+	<h2 class="text-center">게 시 판 글 수 정 하 기</h2>
+	<form name="myform" method="post" action="${ctp}/BoardUpdateOk.bo">
 		<table class="table table-bordered">
 			<tr>
 				<th>글쓴이</th>
@@ -42,36 +42,39 @@
 			</tr>
 			<tr>
 				<th>글제목</th>
-				<td><input type="text" name="title" id="title" placeholder="제목을 입력하세요." autofocus required class="form-control" /></td>
+				<td><input type="text" name="title" id="title" value="${vo.title}" autofocus required class="form-control" /></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="email" name="email" id="email" placeholder="이메일 주소를 입력하세요." class="form-control" /></td>
+				<td><input type="email" name="email" id="email" value="${vo.email}" class="form-control" /></td>
 			</tr>
 			<tr>
 				<th>홈페이지</th>
-				<td><input type="text" name="homePage" id="homePage" placeholder="홈페이지 주소를 입력하세요." value="https://" class="form-control" /></td>
+				<td><input type="text" name="homePage" id="homePage" value="${vo.homePage}" value="https://" class="form-control" /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="6" name="content" id="content" required class="form-control"></textarea></td>
+				<td><textarea rows="6" name="content" id="content" required class="form-control">${vo.content}</textarea></td>
 			</tr>
 			<tr>
 				<th>공개여부</th>
 				<td>
-					<input type="radio" name="openSw" value="OK" checked />공개 &nbsp;
-					<input type="radio" name="openSw" value="NO" />비공개
+					<input type="radio" name="openSw" value="OK" <c:if test="${vo.openSw == 'OK'}">checked</c:if> />공개 &nbsp;
+					<input type="radio" name="openSw" value="NO" <c:if test="${vo.openSw == 'NO'}">checked</c:if> />비공개
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-center">
-					<input type="button" value="글작성" onclick="fCheck()" class="btn btn-success" />
-					<input type="reset" value="다시입력" class="btn btn-secondary" />
-					<input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardList.bo';" class="btn btn-warning" />
+					<input type="button" value="수정하기" onclick="fCheck()" class="btn btn-success" /> &nbsp;
+					<input type="reset" value="다시입력" class="btn btn-secondary" /> &nbsp;
+					<input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-warning" />
 				</td>
 			</tr>
 		</table>
 		<input type="hidden" name="hostIp" value="${pageContext.request.remoteAddr}" />
+		<input type="hidden" name="idx" value="${vo.idx}" />
+		<input type="hidden" name="pag" value="${pag}" />
+		<input type="hidden" name="pageSize" value="${pageSize}" />
 	</form>
 </div>
 <p><br /></p>

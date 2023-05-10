@@ -48,6 +48,7 @@ public class MemberLoginOkCommand implements MemberInterface {
 		session.setAttribute("sMid", mid);
 		session.setAttribute("sNickName", vo.getNickName());
 		session.setAttribute("sLevel", vo.getLevel());
+		session.setAttribute("sLastDate", vo.getLastDate());
 		
 		// 2.
 		Date now = new Date();

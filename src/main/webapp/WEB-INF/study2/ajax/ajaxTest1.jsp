@@ -104,11 +104,11 @@
 					res = res.substring(res.indexOf("[")+1,res.lastIndexOf("]"));
 					$("#demo").html(res);
 					
-					$("#tMid").html(res.substring(res.indexOf("mid=")+4,res.indexOf(",",res.indexOf("mid="))));
+					$("#tMid").html(res.substring(res.indexOf("mid=")+4,res.indexOf(",",res.indexOf("mid="))));  // mid= 이후 ','가 끝나기 전까지 찾아준다.
     			$("#name").html(res.substring(res.indexOf("name=")+5,res.indexOf(",",res.indexOf("name="))));
-    			$("#nickName").html(res.substring(res.indexOf("nickName=")+8,res.indexOf(",",res.indexOf("nickName="))));
-    			$("#gender").html(res.substring(res.indexOf("gender=")+6,res.indexOf(",",res.indexOf("gender="))));
-    			$("#point").html(res.substring(res.indexOf("point=")+5,res.indexOf(",",res.indexOf("point="))));
+    			$("#nickName").html(res.substring(res.indexOf("nickName=")+9,res.indexOf(",",res.indexOf("nickName="))));
+    			$("#gender").html(res.substring(res.indexOf("gender=")+7,res.indexOf(",",res.indexOf("gender="))));
+    			$("#point").html(res.substring(res.indexOf("point=")+6,res.indexOf(",",res.indexOf("point="))));
 				}
 			});
 		}

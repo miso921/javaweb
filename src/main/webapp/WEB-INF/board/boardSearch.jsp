@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>boardList.jsp</title>
+	<title>boardSearch.jsp</title>
 	<jsp:include page="/include/bs4.jsp" />
 </head>
 <script>
@@ -34,8 +34,17 @@
 <jsp:include page="/include/header.jsp" />
 <p><br /></p>
 <div class='container'>
-	<h2 class="text-center">게 시 판 목 록</h2>
-	<table class="table table-borderless">
+	<h2 class="text-center">게 시 판 검 색 결 과 목 록</h2>
+	<div class="text-center">
+		<font color="blue">${searchTitle}</font>(으)로 <font color="green">${searchString}</font>(을)를 검색한 결과 <font color="red"><b>${searchCount}</b></font>건이 검색되었습니다!
+	</div>
+	<br />
+	<table class="table talbe-borderless m-0 p-0 btn-sm">
+		<tr>
+			<td><a href="${ctp}/BoardList.bo?pag=${pag}&pageSize=${pageSize}" class="btn btn-warning">돌아가기</a></td>
+		</tr>
+	</table>
+<%-- 	<table class="table table-borderless">
 		<tr>
 			<td><a href="${ctp}/BoardInput.bo" class="btn btn-secondary btn-sm">글쓰기</a></td>
 			<td>
@@ -66,7 +75,7 @@
 				</c:if>
 			</td>
 		</tr>
-	</table>
+	</table> --%>
 	<table class="table table-hover text-center">
 		<tr class="table-dark text-dark">
 			<th>글번호</th>
@@ -78,20 +87,13 @@
 		</tr>
 		<c:forEach var="vo" items="${vos}" varStatus="st">
 			<tr>
-				<td>${curScrStartNo}</td>
-				<td>
-					<c:if test="${vo.openSw == 'OK' || sLevel == 0 || sMid == vo.mid}">
-						<a href="${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
-						<c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
-					</c:if>
-					<c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
-						${vo.title}
-					</c:if>
+				<td>${searchCount}</td> <!-- 가장 큰 번호 -->
+				<td> 
+					<a href="${ctp}/BoardContent.bo?flag=search&search=${search}&searchString=${searchString}&idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a> <!-- 검색결과 글을 보고 다시 돌아가기 할 때도 이전 목록이 보여야해서 pag,pageSize가져가야함 -->
+					<c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
 				</td>
 				<td>${vo.nickName}</td>
 				<td>
-					<!-- 1일(24시간) 이내는 시간만 표시, 이후는 날짜와 시간을 표시 : 2023-05-04 10:35:25 -->
-					<!-- 단(24시간 안에 만족하는 자료), 날짜가 오늘 날짜만 시간으로 표시하고, 어제 날짜는 날짜로 표시 -->
 					<c:if test="${vo.hour_diff > 24}">${fn:substring(vo.wDate,0,10)}</c:if>
 					<c:if test="${vo.hour_diff <= 24}">
 						${vo.day_diff == 0 ? fn:substring(vo.wDate,11,19) : fn:substring(vo.wDate,0,16)}
@@ -100,11 +102,11 @@
 				<td>${vo.readNum}</td>
 				<td>${vo.good}</td>
 			</tr>
-			<c:set var="curScrStartNo" value="${curScrStartNo - 1}" />
+			<c:set var="searchCount" value="${searchCount - 1}" /> <!-- 하나씩 빼면서 번호가 출력됨 -->
 		</c:forEach>
 		<tr><td colspan="6" class="m-0 p-0"></td></tr>
 	</table>
-	<br />
+	<%-- <br />
 	<!-- 블록 페이징 처리 -->
 	<div class="text-center">
 		<ul class="pagination pagination-sm justify-content-center mt-1" style="margin:20px 0">
@@ -134,7 +136,7 @@
 			<input type="hidden" name="pageSize" value="${pageSize}" />
 	  </form>
 	</div>	
-</div>
+</div> --%>
 <p><br /></p>
 <jsp:include page="/include/footer.jsp" />
 </body>
