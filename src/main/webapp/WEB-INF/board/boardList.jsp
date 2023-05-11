@@ -37,7 +37,7 @@
 	<h2 class="text-center">게 시 판 목 록</h2>
 	<table class="table table-borderless">
 		<tr>
-			<td><a href="${ctp}/BoardInput.bo" class="btn btn-secondary btn-sm">글쓰기</a></td>
+			<c:if test="${sLevel != 1}"><td><a href="${ctp}/BoardInput.bo" class="btn btn-secondary btn-sm">글쓰기</a></td></c:if>
 			<td>
 		</tr>
 	</table>		

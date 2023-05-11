@@ -19,6 +19,7 @@ public class MemberMainCommand implements MemberInterface {
 		
 		MemberVO vo = dao.getMemberMidCheck(mid);
 		
+		
 		// 레벨을 문자로 처리해서 넘겨준다.
 		String strLevel = "";
 		if(vo.getLevel() == 0) strLevel = "관리자";
@@ -32,5 +33,7 @@ public class MemberMainCommand implements MemberInterface {
 		request.setAttribute("visitCnt", vo.getVisitCnt());
 		request.setAttribute("strLevel", strLevel);
 		request.setAttribute("photo", vo.getPhoto());
+		
+		
 	}
 }

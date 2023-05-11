@@ -48,7 +48,7 @@ public class GuestDAO {
 		}
 	}
 
-	// 방문소감 전체보기
+	//방문소감 전체 보기
 	public ArrayList<GuestVO> getGuestList(int startIndexNo, int pageSize) {
 		ArrayList<GuestVO> vos = new ArrayList<>();
 		try {
@@ -62,22 +62,23 @@ public class GuestDAO {
 				vo = new GuestVO();
 				vo.setIdx(rs.getInt("idx"));
 				vo.setName(rs.getString("name"));
-				vo.setContent(rs.getString("content"));
 				vo.setEmail(rs.getString("email"));
 				vo.setHomePage(rs.getString("homePage"));
+				vo.setContent(rs.getString("content"));
 				vo.setVisitDate(rs.getString("visitDate"));
-				vo.setHostIp(rs.getString("hostIp"));
+				vo.setHostIp(rs.getString("hostip"));
 				
 				vos.add(vo);
 			}
 		} catch (SQLException e) {
-			System.out.println("SQL 오류 :" + e.getMessage());
+			System.out.println("SQL 오류 : " + e.getMessage());
 		} finally {
 			rsClose();
 		}
 		return vos;
 	}
 
+	// 방명록 입력 처리
 	public int setGuestInputOk(GuestVO vo) {
 		int res = 0;
 		try {
@@ -131,7 +132,59 @@ public class GuestDAO {
 		}
 		return res;
 	}
-	
-	
+
+	// 특정 회원의 총 레코드 건수 구하기 (from/ MemberMainCommand)
+  public int getList(String mid, String name, String nickName) {
+  	int res = 0;
+  		try {
+        sql = "select count(idx) as cnt from guest where name in(?, ?, ?)";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, mid);
+        pstmt.setString(2, name);
+        pstmt.setString(3, nickName);
+        rs = pstmt.executeQuery();
+        
+        rs.next();
+        res = rs.getInt("cnt");
+        
+    } catch (SQLException e) {
+        System.out.println("SQL 오류 : " + e.getMessage());
+    } finally {
+        rsClose();
+    }
+    return res;
+  }
+
+	public ArrayList<GuestVO> getMemberGuestList(int startIndexNo, int pageSize, String mid, String name, String nickName) {
+		ArrayList<GuestVO> vos = new ArrayList<GuestVO>();
+		try {
+			sql="select * from guest where name in (?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startIndexNo);
+			pstmt.setInt(2, pageSize);
+			pstmt.setString(3, mid);
+			pstmt.setString(4, name);
+			pstmt.setString(5, nickName);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				vo = new GuestVO();          // vo생성!!!
+				vo.setIdx(rs.getInt("idx"));
+				vo.setHostIp(rs.getString("hostIp"));
+				vo.setName(rs.getString("name"));
+				vo.setVisitDate(rs.getString("visitDate"));
+				vo.setEmail(rs.getString("email"));
+				vo.setContent(rs.getString("content"));
+				vo.setHomePage(rs.getString("homePage"));
+				
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+      System.out.println("SQL 오류 : " + e.getMessage());
+  } finally {
+      rsClose();
+  }
+		return vos;
+	}
 }
 

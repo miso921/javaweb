@@ -3,6 +3,7 @@ package member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import conn.GetConn;
 
@@ -163,6 +164,7 @@ public class MemberDAO {
 		}
 	}
 
+	// 아이디 찾기
 	public MemberVO getMemberFindMid(String name, String tel) {
 		vo = new MemberVO();
 		try {
@@ -181,5 +183,50 @@ public class MemberDAO {
 			getConn.rsClose();
 		}
 		return vo;
+	}
+
+	// 회원 전체 목록 처리
+	public ArrayList<MemberVO> getMemberList() {
+		ArrayList<MemberVO> vos = new ArrayList<MemberVO>();
+			try {
+				sql = "select * from member order by idx desc";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					vo = new MemberVO();
+					vo.setIdx(rs.getInt("idx"));
+					vo.setMid(rs.getString("mid"));
+					vo.setPwd(rs.getString("pwd"));
+					vo.setNickName(rs.getString("nickName"));
+					vo.setName(rs.getString("name"));
+					vo.setGender(rs.getString("gender"));
+					vo.setBirthday(rs.getString("birthday"));
+					vo.setTel(rs.getString("tel"));
+					vo.setAddress(rs.getString("address"));
+					vo.setEmail(rs.getString("email"));
+					vo.setHomePage(rs.getString("homePage"));
+					vo.setJob(rs.getString("job"));
+					vo.setHobby(rs.getString("hobby"));
+					vo.setPhoto(rs.getString("photo"));
+					vo.setContent(rs.getString("content"));
+					vo.setUserInfor(rs.getString("userinfor"));
+					vo.setUserDel(rs.getString("userDel"));
+					vo.setPoint(rs.getInt("point"));
+					vo.setLevel(rs.getInt("level"));
+					vo.setVisitCnt(rs.getInt("visitCnt"));
+					vo.setStartDate(rs.getString("startDate"));
+					vo.setLastDate(rs.getString("lastDate"));
+					vo.setTodayCnt(rs.getInt("todayCnt"));
+					vo.setSalt(rs.getString("salt"));
+					
+					vos.add(vo);
+				}
+			} catch (Exception e) {
+				System.out.println("SQL 에러 : " +e.getMessage());
+			} finally {
+				getConn.rsClose();
+			}
+		return vos;
 	}
 }
