@@ -24,8 +24,11 @@ public class BoardDAO {
 		ArrayList<BoardVO> vos = new ArrayList<>();
 		try {
 //			sql = "select * from board order by idx desc limit ?,?";
-			sql = "select *, datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff from"
-					+ " board order by idx desc limit ?,?";
+//			sql = "select *, datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff from"
+//					+ " board order by idx desc limit ?,?";
+			sql = "select *, datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff, "   
+					+ "(select count(*) from boardReply where boardIdx = b.idx) as replyCount "
+					+ "from board b order by idx desc limit ?,?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startIndexNo);
 			pstmt.setInt(2, pageSize);
@@ -49,6 +52,8 @@ public class BoardDAO {
 				vo.setHour_diff(rs.getInt("hour_diff"));
 				vo.setDay_diff(rs.getInt("day_diff"));
 				
+				vo.setreplyCount(rs.getInt("replyCount"));
+						
 				vos.add(vo);
 			}
 		} catch (SQLException e) {
@@ -253,6 +258,7 @@ public class BoardDAO {
 		return res;
 	}
 
+	// 게시글 수정
 	public int setBoardUpdateOk(BoardVO vo) {
 		int res = 0;
 		try {

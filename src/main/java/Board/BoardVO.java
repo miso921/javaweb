@@ -23,6 +23,8 @@ public class BoardVO {
 	private String preTitle;
 	private String nextTitle;
 	
+	private int replyCount;   // 댓글의 개수
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -131,6 +133,12 @@ public class BoardVO {
 	public void setNextTitle(String nextTitle) {
 		this.nextTitle = nextTitle;
 	}
+	public int getreplyCount() {
+		return replyCount;
+	}
+	public void setreplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 	
 	@Override
 	public String toString() {
@@ -138,6 +146,6 @@ public class BoardVO {
 				+ ", homePage=" + homePage + ", content=" + content + ", readNum=" + readNum + ", hostIp=" + hostIp
 				+ ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + ", hour_diff=" + hour_diff + ", day_diff="
 				+ day_diff + ", preIdx=" + preIdx + ", nextIdx=" + nextIdx + ", preTitle=" + preTitle + ", nextTitle="
-				+ nextTitle + "]";
+				+ nextTitle + ", replyCount=" + replyCount + "]";
 	}
 }
